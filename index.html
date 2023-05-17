@@ -12,9 +12,12 @@
 
 	<script src="gsap.min.js" defer></script>
 	<script src="ScrollTrigger.min.js" defer></script>
-	<script src="ScrollSmoother.min.js" defer></script>
+	<script src="ScrollSmoother.min.js" defer></script><!-- Плагин для плавной прокрутки -->
 
 	<script src="app.js" defer></script>
+
+	<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 
 </head>
 <body>
@@ -25,8 +28,8 @@
 			<header class="main-header">
 				<div class="layers">
 					<div class="layer__header">
-						<div class="layers__caption">Welcome to Parallax</div>
-						<div class="layers__title">Fabulous Place</div>
+						<div class="layers__caption">Добро пожаловать!</div>
+						<div class="layers__title">Сказачное место</div>
 					</div>
 					<div class="layer layers__base" style="background-image: url(layer-base.png);"></div>
 					<div class="layer layers__middle" style="background-image: url(layer-middle.png);"></div>
@@ -36,11 +39,100 @@
 		
 			<article class="main-article" style="background-image: url(dungeon.jpg);">
 				<div class="main-article__content">
-					<h2 class="main-article__header">To be continued</h2>
-					<p class="main-article__paragraph">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Omnis error provident dignissimos facere. Repellendus tempore autem qui! Quia magnam tempora esse id necessitatibus corrupti mollitia expedita sapiente cum rerum, ut dicta laboriosam!</p>
+					<div class="main-box">	
+												
+						<div class="form-box login">
+				
+							<h2>Вход</h2>
+				
+							<form action="#">
+
+								<div class="input-box">
+									<span class="icon">
+										<ion-icon name="person"></ion-icon>
+									</span>
+									<input type="text" required>
+									<label>Имя пользователя</label>
+								</div>
+				
+								<div class="input-box">
+									<span class="icon">
+										<ion-icon name="lock-closed"></ion-icon>
+									</span>
+									<input type="password" required>
+									<label>Пароль</label>
+								</div>
+				
+								<div class="remember-forgot">
+									<label>
+										<input type="checkbox">Запомнить меня
+									</label>
+									<a href="#">Забыли пароль?</a>
+								</div>
+				
+								<button type="submit" class="btn">Войти</button>
+				
+								<div class="login-register">
+									<p>У вас нет аккаунта? 
+										<a href="#" class="register-link">Создать аккаунт</a>
+									</p>
+								</div>
+				
+							</form>
+						</div>
+						
+						<div class="form-box register">
+				
+							<h2>Регистрация</h2>
+				
+							<form action="#">
+				
+								<div class="input-box">
+									<span class="icon">
+										<ion-icon name="person"></ion-icon>
+									</span>
+									<input type="text" required>
+									<label>Имя пользователя</label>
+								</div>
+				
+								<div class="input-box">
+									<span class="icon">
+										<ion-icon name="lock-closed"></ion-icon>
+									</span>
+									<input type="email" required>
+									<label>Пароль</label>
+								</div>
+				
+								<div class="input-box">
+									<span class="icon">
+										<ion-icon name="lock-closed"></ion-icon>
+									</span>
+									<input type="password" required>
+									<label>Повторите пароль</label>
+								</div>
+				
+								<div class="remember-forgot">
+									<label>
+										<input type="checkbox">Я согласен с правилами и условиями
+									</label>
+								</div>
+				
+								<button type="submit" class="btn">Создать аккаунт</button>
+				
+								<div class="login-register">
+									<p>У вас уже есть аккаунт? 
+										<a href="#" class="login-link">Войти</a>
+									</p>
+								</div>
+				
+							</form>
+						</div>
+				
+					</div>
 				</div>
-				<div class="copy">© Веб-дизайн</div>
 			</article>
+
+			<div class="copy">© Веб-дизайн</div>
 
 		</div>
 	</div>

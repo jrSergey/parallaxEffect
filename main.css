@@ -3,12 +3,14 @@
 	padding: 0;
 	box-sizing: border-box;
 }
+
 :root {
 	--index: calc(1vw + 1vh);
 	--text: #e7e7e0;
-	--transition: transform .75s cubic-bezier(.075, .5, 0, 1);
+	--transition: transform 0.85s cubic-bezier(.075, .5, 0, 1);
 }
-@font-face {
+
+/* @font-face {
 	font-family: raleway_f;
 	src: url(raleway-regular.woff2);
 }
@@ -16,27 +18,31 @@
 	font-family: raleway_f;
 	src: url(raleway-black.woff2);
 	font-weight: 900;
-}
+} */
+
 body {
 	background-color: #b3c4d5;
 	font-family: raleway_f, sans-serif;
 	line-height: 1.55;
 }
+
 .main-header {
 	position: relative;
 }
+
 .main-header::after {
 	content: '';
 	position: absolute;
 	z-index: 100;
 	width: 100%;
-	height: calc(var(--index) * 15);
+	height: calc(var(--index) * 16);
 	background-image: url(ground.png);
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: center;
-	bottom: calc(var(--index) * -5);
+	bottom: calc(var(--index) * -8.5);
 }
+
 .layers {
 	height: 100vh;
 	display: flex;
@@ -46,16 +52,17 @@ body {
 	overflow: hidden;
 	position: relative;
 }
+
 .layer {
 	height: 100%;
 	width: 100%;
 	position: absolute;
 	background-size: cover;
 	background-position: center;
-	will-change: transform;
 	z-index: 2;
 	transition: var(--transition);
 }
+
 .layers__base {
 	transform: translate3d(0, calc(var(--scrollTop) / 1.6), 0);
 	z-index: 0;
@@ -70,7 +77,6 @@ body {
 	z-index: 3;
 	transform: translate3d(0, calc(var(--scrollTop) / 2), 0);
 	transition: var(--transition);
-	will-change: transform;
 	text-transform: uppercase;
 	font-weight: 900;
 	color: var(--text);
@@ -90,35 +96,23 @@ body {
 	min-height: 100vh;
 	background-size: cover;
 	background-position: center;
-	color: var(--text);
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	position: relative;
-	text-align: center;
-	/* Update: */
 	top: -1px;
 	z-index: 10;
 }
-.main-article__header {
-	text-transform: uppercase;
-	font-size: calc(var(--index) * 1.8);
-	letter-spacing: calc(var(--index) / 7.5);
-	transform: var(--main-article-transform);
-	transition: var(--transition);
-	will-change: transform;
+.main-article__content {
+	--main-article-transform: translate3d(0, calc(var(--scrollTop) / 15), 0);
+	min-height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+	
 }
-.main-article__paragraph {
-	max-width: calc(var(--index) * 30);
-	font-size: calc(var(--index) * .9);
-	margin-top: calc(var(--index) / 1.25);
-	transform: var(--main-article-transform);
-	transition: var(--transition);
-	will-change: transform;
-}
-.content {
-	will-change: transform;
-}
+
 .copy {
 	position: absolute;
 	bottom: calc(var(--index) * 2.5);
@@ -126,3 +120,195 @@ body {
 	font-size: calc(var(--index) * .75);
 	letter-spacing: calc(var(--index) / 37.5);
 }
+
+/********** Стиль окна логина/регистации **********/
+
+.main-box {
+	width: 22em;
+    position: relative;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 2em;
+    backdrop-filter: blur(10px); /* размытие */
+    box-shadow: 0 0 2em rgba(0, 0, 0, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+	transform: var(--main-article-transform);
+	transition: var(--transition);
+}
+
+/*Активация окна логина/регистрации при нажатии кнопки Логин в навигации через JavaScript */
+
+.main-box.active-popup {
+    transform: scale(1);
+}
+
+/* Общее расположение внутри окна */
+
+.main-box .form-box {
+	--main-article-transform: translate3d(0, calc(var(--scrollTop) / -7.5), 0);
+    width: 20em;
+	height: 29em;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+}
+
+/* Скрытие окна Логин */
+
+.main-box .form-box.login {
+    transition: transform 0.18s ease;
+    transform: translateX(0);
+}
+
+/* Сдвиг Логина влево при клике на ссылку регистрация */
+
+.main-box.active .form-box.login {
+    transition: none;
+    transform: translateX(-25em);
+}
+
+/* Смещение регистрации от окна логина вправо */
+
+.main-box .form-box.register {
+    position: absolute;
+    transform: none;
+    transform: translateX(25em);
+}
+
+/* Смещение регистрации в окно логина */
+
+.main-box.active .form-box.register {
+    transition: transform 0.18s ease;
+    transform: translateX(0);
+}
+
+/* Стиль надписи "Логин" и "Регистрация" */
+
+.form-box h2 {
+	font-size: 2em;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	font-weight: 900;
+	color: var(--text);
+	text-shadow: 0 0 1em #9d822b;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+/* Стиль области почты и пароля */
+
+.input-box {
+    position: relative;
+    border-bottom: 2px solid var(--text);
+    margin: 10% 0;
+	color: var(--text);
+}
+
+/* Стиль надписи почты и пароля и его расположение */
+
+.input-box label {
+	color: var(--text);
+    position: absolute;
+    top: 50%;
+    left: 1%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    transition: 0.5s;
+}
+
+/* Смещение текста в текстовом поле для ввода данных */
+
+.input-box input:focus~label,
+.input-box input:valid~label {
+    top: -.4em;
+}
+
+/* Стиль текстового поля почты и пароля */
+
+.input-box input {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    padding: 0 3em 0 .5em;
+	color: var(--text);
+}
+
+/* Стиль иконок и их расположение */
+
+.input-box .icon {
+    position: absolute;
+    right: .5em;
+}
+
+/* Стиль и расположение текста "запомнить меня" и "забыли пароль?" */
+
+.remember-forgot {
+	color: var(--text);
+    margin: 1.5em 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Стиль флажка */
+
+.remember-forgot label input {
+    accent-color: var(--text);
+    margin-right: .2em;
+}
+
+/* Стиль текста ссылки "забыли пароль?" */
+
+.remember-forgot a {
+	color: var(--text);
+    text-decoration: none;
+}
+
+/* Появление подчеркивания под ссылкой */
+
+.remember-forgot a:hover {
+    text-decoration: underline;
+}
+
+/* Стиль кнопки "Логин" */
+
+.btn {
+    width: 100%;
+    height: 3em;
+    background: #022028;
+    border: none;
+    outline: none;
+    border-radius: .5em;
+    cursor: pointer;
+    font-size: 1em;
+	color: var(--text);
+}
+
+/* Стиль текста о регистрации */
+
+.login-register {
+    color: var(--text);
+    text-align: center;
+    margin: 1.5em 0 .7em;
+}
+
+/* Стиль ссылки о регистрации */
+
+.login-register p a {
+    color: var(--text);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+/* Появление подчеркивания под ссылкой */
+
+.login-register p a:hover {
+    text-decoration: underline;
+}
+
